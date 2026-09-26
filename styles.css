@@ -1,0 +1,59 @@
+/* Pink theme - starter version */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito+Sans:wght@400;700&display=swap');
+
+:root {
+  --blush: #fff5f8;   /* page background */
+  --rose: #f0bcd0;    /* borders */
+  --berry: #b0306a;   /* main pink */
+  --plum: #3a1f2b;    /* text */
+}
+
+body {
+  font-family: 'Nunito Sans', Arial, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  color: var(--plum);
+  background: var(--blush);
+}
+
+h1, h2, h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  color: var(--berry);
+}
+
+a { color: var(--berry); }
+
+/* Header and navigation */
+.site-header {
+  background: var(--berry);
+  padding: 1rem 1.5rem;
+}
+
+.logo {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.4rem;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1.5rem;
+}
+
+.site-header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: 700;
+}
+
+/* Page content */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 2px solid var(--rose);
+}
