@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Haley Johnson | GA4 Analytics Pipeline</title>
+  <title>Haley Johnson | AI Email Automation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,13 +21,49 @@
   </header>
 
   <main>
-    <h1>GA4 Analytics Pipeline</h1>
-    <p>An automated data pipeline built during my Analytics/Marketing internship at Ford Gum.</p>
+    <h1>AI Email Automation</h1>
+    <p>A self-built workflow in n8n that reads incoming emails and answers them automatically, created during my Analytics/Marketing internship at Ford Gum.</p>
 
     <section>
-      <h2>Overview</h2>
-      <p>Website analytics data from Google Analytics 4 had to be pulled and organized before anyone could use it. I designed a pipeline that does this automatically every day, so the team always has current numbers in a dashboard instead of exporting reports by hand.</p>
+      <h2>The Problem</h2>
+      <p>Part of my internship involved checking a shared inbox and answering routine inquiries by hand, the kind of repetitive work you'd expect at a front desk. I'm drawn to the technical side of business, so instead of just doing the task, I turned it into an opportunity to build something.</p>
     </section>
 
     <section>
       <h2>How It Works</h2>
+      <ul>
+        <li><strong>Trigger:</strong> An IMAP trigger watches the inbox and starts the workflow the moment a new email arrives.</li>
+        <li><strong>Parse:</strong> The workflow pulls out the sender, subject, and message so the content can be analyzed.</li>
+        <li><strong>Match:</strong> Conditional logic compares the inquiry against a reference file I created, an answer key that maps common questions to the right responses.</li>
+        <li><strong>Draft:</strong> An AI inference API writes a personalized reply using the matching answer.</li>
+        <li><strong>Send:</strong> The reply goes back to the sender automatically, with no manual checking required.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impact</h2>
+      <ul>
+        <li>Replaced manual inbox checking with a workflow that runs on its own</li>
+        <li>Routine inquiries get answered as soon as they arrive instead of waiting for someone to check the inbox</li>
+        <li>Consistent, accurate replies, because every answer comes from the same approved answer key</li>
+        <li>Frees up time for higher-value work like analytics and reporting</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>My Role</h2>
+      <p>This was a self-initiated project. Nobody asked me to automate the inbox. I designed the workflow, built each step in n8n, wrote the answer key the AI draws from, and tested it until the replies were accurate.</p>
+    </section>
+
+    <section>
+      <h2>Tools &amp; Skills Used</h2>
+      <p>n8n, IMAP email triggers, conditional logic, AI inference APIs, API integration, workflow design</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Haley Johnson</p>
+  </footer>
+
+</body>
+</html>
