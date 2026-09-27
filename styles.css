@@ -1,6 +1,5 @@
 /* Pink theme - starter version */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito+Sans:wght@400;700&display=swap');
-
+font-family: 'Lato', Arial, sans-serif;
 :root {
   --blush: #fff5f8;   /* page background */
   --rose: #f0bcd0;    /* borders */
