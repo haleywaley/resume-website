@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Haley Johnson | AI Email Automation</title>
+  <title data-i18n="title.project">Haley Johnson | AI Email Automation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,53 +11,87 @@
   <header class="site-header">
     <a class="logo" href="index.html">Haley Johnson</a>
     <nav>
-      <a href="index.html#profile">Profile</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="resume.html">Resume</a>
-      <a href="project.html">Project</a>
+      <a href="resume.html" data-i18n="nav.resume">Resume</a>
+      <a href="project.html" data-i18n="nav.project">Project</a>
     </nav>
+    <button class="lang-button" type="button" aria-label="Change language">EN</button>
   </header>
 
-  <main>
-    <h1>AI Email Automation</h1>
-    <p>A self-built workflow in n8n that reads incoming emails and answers them automatically, created during my Analytics/Marketing internship at Ford Gum.</p>
+  <main class="page-card">
+    <p class="project-tag" data-i18n="proj.tag">Self-initiated project · In progress</p>
+    <h1 data-i18n="proj.title">AI Email Automation</h1>
+    <p data-i18n="proj.intro">An n8n workflow that reads incoming customer emails, looks up order details, and drafts replies with AI, built during my Analytics/Marketing internship at Ford Gum.</p>
 
     <section>
-      <h2>The Problem</h2>
-      <p>Part of my internship involved checking a shared inbox and answering routine inquiries by hand, the kind of repetitive work you'd expect at a front desk. I'm drawn to the technical side of business, so instead of just doing the task, I turned it into an opportunity to build something.</p>
+      <h2 data-i18n="proj.problem.h">The Problem</h2>
+      <p data-i18n="proj.problem">Part of my marketing internship was checking a shared inbox and answering the same customer questions by hand, the kind of repetitive work you'd expect at a front desk. It wasn't the work that excited me, but the problem behind it did. So instead of just doing the task, I turned it into something I wanted to build: an automated assistant that reads each message, figures out what the customer needs, and answers it.</p>
     </section>
 
     <section>
-      <h2>How It Works</h2>
+      <h2 data-i18n="proj.look.h">A Look Into the Project</h2>
+      <figure class="window">
+        <div class="window-bar" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <p>n8n · email-automation</p>
+        </div>
+        <button class="window-image" type="button" aria-label="Enlarge workflow screenshot">
+          <img src="n8n-workflow.png" alt="The n8n workflow: an Outlook trigger feeding decision nodes, a Square API order lookup, a Claude prompt node, and a confidence check that either sends the reply or alerts the team">
+        </button>
+      </figure>
+      <p data-i18n="proj.look">This is the workflow as I'm building it. Each box is a node: a trigger, a decision, an API call, or an action. I'm mapping the path an email takes through the system, then configuring and testing each branch one at a time before connecting it to the next. The warning icons mark nodes that still need credentials or configuration.</p>
+    </section>
+
+    <section>
+      <h2 data-i18n="proj.how.h">How It Works</h2>
+      <ol class="steps">
+        <li data-i18n="proj.how.1"><strong>Trigger:</strong> A Microsoft Outlook trigger starts the workflow whenever a new email arrives.</li>
+        <li data-i18n="proj.how.2"><strong>Sort:</strong> Conditional logic checks whether the email is about an order or a general question.</li>
+        <li data-i18n="proj.how.3"><strong>Look up:</strong> For order questions, the workflow pulls out the order number and calls the Square API over HTTP to find the order. If there's no order number, it emails the customer to ask for one.</li>
+        <li data-i18n="proj.how.4"><strong>Match:</strong> General questions are matched against an answer key I wrote, a document of common questions and approved responses.</li>
+        <li data-i18n="proj.how.5"><strong>Draft:</strong> Claude, Anthropic's AI model, writes a personalized reply using the order details or the matching answer.</li>
+        <li data-i18n="proj.how.6"><strong>Check:</strong> A confidence check sends replies scoring 95% or higher straight to the customer. Anything lower alerts the team for a manual review.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 data-i18n="proj.impact.h">What It's Built to Do</h2>
       <ul>
-        <li><strong>Trigger:</strong> An IMAP trigger watches the inbox and starts the workflow the moment a new email arrives.</li>
-        <li><strong>Parse:</strong> The workflow pulls out the sender, subject, and message so the content can be analyzed.</li>
-        <li><strong>Match:</strong> Conditional logic compares the inquiry against a reference file I created, an answer key that maps common questions to the right responses.</li>
-        <li><strong>Draft:</strong> An AI inference API writes a personalized reply using the matching answer.</li>
-        <li><strong>Send:</strong> The reply goes back to the sender automatically, with no manual checking required.</li>
+        <li data-i18n="proj.impact.1">Answer routine questions without anyone having to watch the inbox</li>
+        <li data-i18n="proj.impact.2">Look up order status in seconds instead of searching by hand</li>
+        <li data-i18n="proj.impact.3">Keep replies consistent, since every answer comes from the same approved answer key</li>
+        <li data-i18n="proj.impact.4">Keep a human in the loop: low-confidence replies go to the team instead of the customer</li>
       </ul>
     </section>
 
     <section>
-      <h2>Impact</h2>
-      <ul>
-        <li>Replaced manual inbox checking with a workflow that runs on its own</li>
-        <li>Routine inquiries get answered as soon as they arrive instead of waiting for someone to check the inbox</li>
-        <li>Consistent, accurate replies, because every answer comes from the same approved answer key</li>
-        <li>Frees up time for higher-value work like analytics and reporting</li>
-      </ul>
+      <h2 data-i18n="proj.role.h">My Role</h2>
+      <p data-i18n="proj.role">Nobody asked me to automate the inbox. I designed the workflow, built each node in n8n, wrote the answer key the AI draws from, and set up the order lookup through the Square API. I'm now configuring and testing each branch to make sure the replies are accurate before it goes live.</p>
     </section>
 
     <section>
-      <h2>My Role</h2>
-      <p>This was a self-initiated project. Nobody asked me to automate the inbox. I designed the workflow, built each step in n8n, wrote the answer key the AI draws from, and tested it until the replies were accurate.</p>
+      <h2 data-i18n="proj.tools.h">Tools &amp; Skills Used</h2>
+      <p data-i18n="proj.tools">n8n, Microsoft Outlook, Square API, HTTP requests, Claude (Anthropic), conditional logic, prompt design, workflow design</p>
     </section>
-
-    <section>
-      <h2>Tools &amp; Skills Used</h2>
-      <p>n8n, IMAP email triggers, conditional logic, AI inference APIs, API integration, workflow design</p>
+    <section class="demo">
+      <h2 data-i18n="proj.demo.h">Try It Yourself</h2>
+      <p data-i18n="proj.demo.p">Pick a customer email and watch where the workflow sends it. (A simplified demo with sample data.)</p>
+      <div class="demo-picks">
+        <button type="button" data-case="found" data-i18n="demo.pick1">"Where's my order #1042?"</button>
+        <button type="button" data-case="nonum" data-i18n="demo.pick2">"Where is my order?"</button>
+        <button type="button" data-case="general" data-i18n="demo.pick3">"Can I change my shipping address?"</button>
+      </div>
+      <div class="demo-flow" aria-live="polite">
+        <span class="demo-node" data-step="1" data-i18n="demo.n1">Email in</span>
+        <span class="demo-arrow" aria-hidden="true">→</span>
+        <span class="demo-node" data-step="2" data-i18n="demo.n2">Order question?</span>
+        <span class="demo-arrow" aria-hidden="true">→</span>
+        <span class="demo-node" data-step="3">…</span>
+        <span class="demo-arrow" aria-hidden="true">→</span>
+        <span class="demo-node" data-step="4" data-i18n="demo.n4">Claude drafts</span>
+        <span class="demo-arrow" aria-hidden="true">→</span>
+        <span class="demo-node" data-step="5" data-i18n="demo.n5">Result</span>
+      </div>
+      <p class="demo-result"></p>
     </section>
   </main>
 
@@ -65,5 +99,6 @@
     <p>&copy; 2026 Haley Johnson</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

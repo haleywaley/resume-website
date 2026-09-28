@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Haley Johnson | Management Information Systems</title>
+  <title data-i18n="title.home">Haley Johnson | Management Information Systems</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,68 +11,55 @@
   <header class="site-header">
     <a class="logo" href="index.html">Haley Johnson</a>
     <nav>
-      <a href="index.html#profile">Profile</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="resume.html">Resume</a>
-      <a href="project.html">Project</a>
+      <a href="resume.html" data-i18n="nav.resume">Resume</a>
+      <a href="project.html" data-i18n="nav.project">Project</a>
     </nav>
+    <button class="lang-button" type="button" aria-label="Change language">EN</button>
   </header>
 
-  <main>
+  <main class="page-card">
     <section id="profile">
-      <h1>Haley Johnson</h1>
-      <p>Management Information Systems student at Louisiana State University, graduating December 2026. I work where IT operations, data, and automation meet: supporting systems and users day to day, and building pipelines and workflows that turn raw data into decisions.</p>
-      <p>Certifications: AWS Cloud, Azure AI-900, Network+ (pending)</p>
+      <div class="photo-wrap">
+        <div class="photo-zoom">
+          <img src="haley.jpg" alt="Haley Johnson smiling under a tree by a lake">
+          <span class="sparkle" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#fff"/></svg>
+          </span>
+        </div>
+      </div>
+      <p class="cta-wrap"><a href="#contact" class="contact-cta" data-i18n="home.cta">Contact me</a></p>
+      <h1 data-i18n="home.hi">Hi, I'm Haley.</h1>
+      <p data-i18n="home.p1">I'm a Management Information Systems student at LSU, graduating in December 2026, and I'm happiest on the technical side of business. Right now I'm building skills and certifications in Python, cybersecurity, AI and cloud, and IT project management.</p>
+      <p data-i18n="home.p2">As an IT Operations Analyst at LSU, I work across operating systems, network management, and technical support, tracking down the root of a problem and fixing it fast. My internships added data analysis, reporting, SEO, and project management to the mix. At Ford Gum, I took a routine task nobody loved, answering a shared inbox by hand, and I'm turning it into an AI workflow that answers emails on its own.</p>
+      <p data-i18n="home.p3">I'm looking for a company that values challenges, continuous learning, and creativity: a place where I can keep finding the messy parts of a process and building something better.</p>
+      <p data-i18n="home.p4">Take a look at my <a href="resume.html">resume</a> and the <a href="project.html">project</a> I'm proudest of. I'd love to connect.</p>
     </section>
 
     <section id="skills">
-      <h2>Skills</h2>
+      <h2 data-i18n="home.skills">Skills</h2>
       <ul>
-        <li><strong>Languages:</strong> Python (basic), SQL, HTML, CSS</li>
-        <li><strong>Operating systems:</strong> Windows, Linux, Unix, macOS</li>
-        <li><strong>Tools:</strong> GitHub, n8n, VS Code, MySQL, Tableau, Google Analytics, Asana</li>
-        <li><strong>Technical knowledge:</strong> Azure Cloud, data workflows, network security, API integration</li>
+        <li data-i18n="skill.lang"><strong>Languages:</strong> Python (basic), SQL, HTML, CSS</li>
+        <li data-i18n="skill.tools"><strong>Tools:</strong> n8n, Tableau, GitHub, MySQL, Google Analytics</li>
+        <li data-i18n="skill.systems"><strong>Systems:</strong> Windows, Linux, macOS, Azure Cloud, network security</li>
+        <li data-i18n="skill.certs"><strong>Certifications:</strong> AWS Cloud, Azure AI-900, Network+ (pending)</li>
       </ul>
     </section>
 
     <section id="experience">
-      <h2>Experience</h2>
-
-      <h3>Analytics/Marketing Intern, Ford Gum</h3>
-      <p>June 2025 – Present, Remote</p>
+      <h2 data-i18n="home.experience">Experience</h2>
       <ul>
-        <li>Coded custom HTML and CSS email templates that improved user experience and helped drive website traffic and sales</li>
-        <li>Designing and implementing a full GA4 analytics pipeline in Python that automates daily data extraction, structures the data, and powers a dynamic Tableau dashboard</li>
-        <li>Building an AI workflow automation in n8n using conditional logic nodes, IMAP triggers, and AI inference APIs</li>
-        <li>Developing a cybersecurity awareness session on business email compromise, covering credential theft, hash cracking, and secure verification workflows</li>
+        <li data-i18n="exp.ford"><strong>Analytics/Marketing Intern</strong>, Ford Gum (2025 – Present)</li>
+        <li data-i18n="exp.lsu"><strong>IT Operations Analyst</strong>, Louisiana State University (2024 – Present)</li>
+        <li data-i18n="exp.wet"><strong>Digital Marketing/Technology Intern</strong>, Wet Sounds (Summer 2024)</li>
       </ul>
-
-      <h3>IT Operations Analyst, Louisiana State University</h3>
-      <p>April 2024 – Present, Baton Rouge, LA</p>
-      <ul>
-        <li>Configure Windows group policy, Linux system settings, and macOS configuration profiles to improve security and performance</li>
-        <li>Diagnose and resolve network connectivity issues, keeping TCP/IP configuration and HTTP/S working across departmental systems</li>
-        <li>Lead hardware lifecycle upgrades, replacing and configuring 100+ computers across multiple departments</li>
-        <li>Guide end users through technical issues, achieving a 98% satisfaction rating</li>
-      </ul>
-
-      <h3>Digital Marketing/Technology Intern, Wet Sounds</h3>
-      <p>May 2024 – August 2024, Rosenberg, TX</p>
-      <ul>
-        <li>Designed, implemented, and managed three concurrent projects in Asana with 100% on-time delivery</li>
-        <li>Used SEO, AI, and A/B testing to run a customer engagement campaign that raised email open rates by 20%</li>
-        <li>Analyzed website and engagement data, producing insights that improved conversion rates by 15%</li>
-        <li>Presented new strategies in weekly meetings, leading to two company-wide process improvements</li>
-      </ul>
+      <p data-i18n="home.details">See the details on my <a href="resume.html">resume page</a>.</p>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
+      <h2 data-i18n="home.contact">Contact</h2>
       <p>Email: <a href="mailto:hjoh138@lsu.edu">hjoh138@lsu.edu</a></p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/haleyyjohnson/" target="_blank">Haley Johnson</a></p>
-      <p>Based in Houston, TX and Baton Rouge, LA</p>
+      <p data-i18n="home.based">Based in Houston, TX and Baton Rouge, LA</p>
     </section>
   </main>
 
@@ -80,5 +67,6 @@
     <p>&copy; 2026 Haley Johnson</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

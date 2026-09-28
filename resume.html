@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Haley Johnson | Management Information Systems</title>
+  <title data-i18n="title.resume">Haley Johnson | Resume</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,52 +11,60 @@
   <header class="site-header">
     <a class="logo" href="index.html">Haley Johnson</a>
     <nav>
-      <a href="index.html#profile">Profile</a>
-      <a href="index.html#skills">Skills</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="resume.html">Resume</a>
-      <a href="project.html">Project</a>
+      <a href="resume.html" data-i18n="nav.resume">Resume</a>
+      <a href="project.html" data-i18n="nav.project">Project</a>
     </nav>
+    <button class="lang-button" type="button" aria-label="Change language">EN</button>
   </header>
 
-  <main>
-    <section id="profile">
-      <h1>Haley Johnson</h1>
-      <p>Management Information Systems student at Louisiana State University, graduating December 2026. I work where IT operations, data, and automation meet: supporting systems and users day to day, and building pipelines and workflows that turn raw data into decisions.</p>
-      <p>Certifications: AWS Cloud, Azure AI-900, Network+ (pending)</p>
+  <main class="page-card">
+    <h1 data-i18n="res.title">Resume</h1>
+
+    <section>
+      <h2 data-i18n="res.education">Education</h2>
+      <p><strong>Louisiana State University A&amp;M College</strong>, Baton Rouge, LA</p>
+      <p data-i18n="res.degree">Bachelor of Science in Management Information Systems, December 2026</p>
+      <p data-i18n="res.certs"><strong>Certifications:</strong> AWS Cloud, Azure AI-900, Network+ (pending)</p>
+      <p data-i18n="res.orgs"><strong>Organizations:</strong> Association of IT Professionals (AITP), Security Society, LSU Mentor Program</p>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
+    <section>
+      <h2 data-i18n="res.experience">Experience</h2>
+
+      <h3 data-i18n="res.ford.h">Analytics/Marketing Intern, Ford Gum</h3>
+      <p data-i18n="res.ford.d">June 2025 – Present, Remote</p>
       <ul>
-        <li><strong>Languages:</strong> Python (basic), SQL, HTML, CSS</li>
-        <li><strong>Operating systems:</strong> Windows, Linux, Unix, macOS</li>
-        <li><strong>Tools:</strong> GitHub, n8n, VS Code, MySQL, Tableau, Google Analytics, Asana</li>
-        <li><strong>Technical knowledge:</strong> Azure Cloud, data workflows, network security, API integration</li>
+        <li data-i18n="res.ford.1">Coded custom HTML and CSS email templates that improved user experience and helped drive website traffic and sales</li>
+        <li data-i18n="res.ford.2">Designing and implementing a full GA4 analytics pipeline in Python that automates daily data extraction, structures the data, and powers a dynamic Tableau dashboard</li>
+        <li data-i18n="res.ford.3">Building an AI workflow automation in n8n using conditional logic nodes, IMAP triggers, and AI inference APIs</li>
+        <li data-i18n="res.ford.4">Developing a cybersecurity awareness session on business email compromise, covering credential theft, hash cracking, and secure verification workflows</li>
+      </ul>
+
+      <h3 data-i18n="res.lsu.h">IT Operations Analyst, Louisiana State University</h3>
+      <p data-i18n="res.lsu.d">April 2024 – Present, Baton Rouge, LA</p>
+      <ul>
+        <li data-i18n="res.lsu.1">Configure Windows group policy, Linux system settings, and macOS configuration profiles to improve security and performance</li>
+        <li data-i18n="res.lsu.2">Diagnose and resolve network connectivity issues, keeping TCP/IP configuration and HTTP/S working across departmental systems</li>
+        <li data-i18n="res.lsu.3">Lead hardware lifecycle upgrades, replacing and configuring 100+ computers across multiple departments</li>
+        <li data-i18n="res.lsu.4">Guide end users through technical issues, achieving a 98% satisfaction rating</li>
+      </ul>
+
+      <h3 data-i18n="res.wet.h">Digital Marketing/Technology Intern, Wet Sounds</h3>
+      <p data-i18n="res.wet.d">May 2024 – August 2024, Rosenberg, TX</p>
+      <ul>
+        <li data-i18n="res.wet.1">Designed, implemented, and managed three concurrent projects in Asana with 100% on-time delivery</li>
+        <li data-i18n="res.wet.2">Used SEO, AI, and A/B testing to run a customer engagement campaign that raised email open rates by 20%</li>
+        <li data-i18n="res.wet.3">Analyzed website and engagement data, producing insights that improved conversion rates by 15%</li>
+        <li data-i18n="res.wet.4">Presented new strategies in weekly meetings, leading to two company-wide process improvements</li>
       </ul>
     </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-
-      <p><strong>Analytics/Marketing Intern</strong>, Ford Gum (June 2025 – Present, Remote)</p>
-      <p>Building a GA4 analytics pipeline in Python that feeds a Tableau dashboard, and an AI workflow automation in n8n.</p>
-
-      <p><strong>IT Operations Analyst</strong>, Louisiana State University (April 2024 – Present)</p>
-      <p>Configure Windows, Linux, and macOS systems, troubleshoot network issues, and lead hardware upgrades for 100+ computers, with a 98% user satisfaction rating.</p>
-
-      <p><strong>Digital Marketing/Technology Intern</strong>, Wet Sounds (May – August 2024)</p>
-      <p>Managed three concurrent projects on time and used SEO and A/B testing to raise email open rates by 20%.</p>
-
-      <p><a href="resume.html">See full resume</a></p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:hjoh138@lsu.edu">hjoh138@lsu.edu</a></p>
-      <p>LinkedIn: <a href="#">Haley Johnson</a></p>
-      <p>Based in Houston, TX and Baton Rouge, LA</p>
+    <section>
+      <h2 data-i18n="res.skills">Skills</h2>
+      <p data-i18n="skill.lang"><strong>Languages:</strong> Python (basic), SQL, HTML, CSS</p>
+      <p data-i18n="res.os"><strong>Operating systems:</strong> Windows, Linux, Unix, macOS</p>
+      <p data-i18n="res.tools"><strong>Tools:</strong> GitHub, n8n, VS Code, MySQL, Tableau, Google Analytics, Asana</p>
+      <p data-i18n="res.tech"><strong>Technical knowledge:</strong> Azure Cloud, data workflows, network security, API integration</p>
     </section>
   </main>
 
@@ -64,5 +72,6 @@
     <p>&copy; 2026 Haley Johnson</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
