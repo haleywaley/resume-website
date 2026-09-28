@@ -14,11 +14,14 @@
       <a href="resume.html" data-i18n="nav.resume">Resume</a>
       <a href="project.html" data-i18n="nav.project">Project</a>
     </nav>
-    <button class="lang-button" type="button" aria-label="Change language">EN</button>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en">EN</button>
+      <button type="button" data-set-lang="es">ES</button>
+      <button type="button" data-set-lang="it">IT</button>
+    </div>
   </header>
 
   <main class="page-card">
-    <p class="project-tag" data-i18n="proj.tag">Self-initiated project · In progress</p>
     <h1 data-i18n="proj.title">AI Email Automation</h1>
     <p data-i18n="proj.intro">An n8n workflow that reads incoming customer emails, looks up order details, and drafts replies with AI, built during my Analytics/Marketing internship at Ford Gum.</p>
 
@@ -74,24 +77,23 @@
     </section>
     <section class="demo">
       <h2 data-i18n="proj.demo.h">Try It Yourself</h2>
-      <p data-i18n="proj.demo.p">Pick a customer email and watch where the workflow sends it. (A simplified demo with sample data.)</p>
-      <div class="demo-picks">
-        <button type="button" data-case="found" data-i18n="demo.pick1">"Where's my order #1042?"</button>
-        <button type="button" data-case="nonum" data-i18n="demo.pick2">"Where is my order?"</button>
-        <button type="button" data-case="general" data-i18n="demo.pick3">"Can I change my shipping address?"</button>
+      <p data-i18n="proj.demo.p">You're the workflow. Drag the arrow from the email to the node it should go to next. (A simplified demo with sample data. You can also just tap a node.)</p>
+      <div class="demo-board">
+        <svg class="demo-lines" aria-hidden="true"><path class="demo-line"></path></svg>
+        <div class="demo-email">
+          <p class="demo-email-label"></p>
+          <p class="demo-email-text"></p>
+          <span class="demo-handle" title="Drag me"></span>
+        </div>
+        <div class="demo-targets">
+          <button type="button" class="demo-target" data-route="lookup"></button>
+          <button type="button" class="demo-target" data-route="ask"></button>
+          <button type="button" class="demo-target" data-route="answer"></button>
+        </div>
       </div>
-      <div class="demo-flow" aria-live="polite">
-        <span class="demo-node" data-step="1" data-i18n="demo.n1">Email in</span>
-        <span class="demo-arrow" aria-hidden="true">→</span>
-        <span class="demo-node" data-step="2" data-i18n="demo.n2">Order question?</span>
-        <span class="demo-arrow" aria-hidden="true">→</span>
-        <span class="demo-node" data-step="3">…</span>
-        <span class="demo-arrow" aria-hidden="true">→</span>
-        <span class="demo-node" data-step="4" data-i18n="demo.n4">Claude drafts</span>
-        <span class="demo-arrow" aria-hidden="true">→</span>
-        <span class="demo-node" data-step="5" data-i18n="demo.n5">Result</span>
-      </div>
-      <p class="demo-result"></p>
+      <div class="demo-after" aria-hidden="true"></div>
+      <p class="demo-status" aria-live="polite"></p>
+      <button type="button" class="demo-next"></button>
     </section>
   </main>
 

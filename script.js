@@ -64,15 +64,7 @@ const translations = {
 
     "title.project": "Haley Johnson | Automatización de correo con IA",
     "proj.demo.h": "Pruébalo tú",
-    "proj.demo.p": "Elige un correo de cliente y mira a dónde lo envía el flujo. (Una demo simplificada con datos de ejemplo.)",
-    "demo.pick1": "\"¿Dónde está mi pedido #1042?\"",
-    "demo.pick2": "\"¿Dónde está mi pedido?\"",
-    "demo.pick3": "\"¿Puedo cambiar mi dirección de envío?\"",
-    "demo.n1": "Llega el correo",
-    "demo.n2": "¿Es sobre un pedido?",
-    "demo.n4": "Claude redacta",
-    "demo.n5": "Resultado",
-    "proj.tag": "Proyecto por iniciativa propia · En desarrollo",
+    "proj.demo.p": "Tú eres el flujo. Arrastra la flecha desde el correo hasta el nodo al que debería ir. (Una demo simplificada con datos de ejemplo. También puedes tocar un nodo.)",
     "proj.title": "Automatización de correo con IA",
     "proj.intro": "Un flujo de trabajo en n8n que lee los correos de clientes, busca los detalles de sus pedidos y redacta respuestas con IA, creado durante mi pasantía de Analítica/Marketing en Ford Gum.",
     "proj.problem.h": "El problema",
@@ -158,15 +150,7 @@ const translations = {
 
     "title.project": "Haley Johnson | Automazione email con IA",
     "proj.demo.h": "Provalo tu",
-    "proj.demo.p": "Scegli un'email di un cliente e guarda dove la manda il flusso. (Una demo semplificata con dati di esempio.)",
-    "demo.pick1": "\"Dov'è il mio ordine #1042?\"",
-    "demo.pick2": "\"Dov'è il mio ordine?\"",
-    "demo.pick3": "\"Posso cambiare l'indirizzo di spedizione?\"",
-    "demo.n1": "Arriva l'email",
-    "demo.n2": "Riguarda un ordine?",
-    "demo.n4": "Claude scrive",
-    "demo.n5": "Risultato",
-    "proj.tag": "Progetto personale · In corso",
+    "proj.demo.p": "Il flusso sei tu. Trascina la freccia dall'email al nodo dove dovrebbe andare. (Una demo semplificata con dati di esempio. Puoi anche toccare un nodo.)",
     "proj.title": "Automazione email con IA",
     "proj.intro": "Un flusso di lavoro in n8n che legge le email dei clienti, cerca i dettagli degli ordini e scrive le risposte con l'IA, creato durante il mio tirocinio in Analytics/Marketing da Ford Gum.",
     "proj.problem.h": "Il problema",
@@ -209,8 +193,10 @@ function applyLanguage(lang) {
     const text = lang === "en" ? null : translations[lang][el.dataset.i18n];
     el.innerHTML = text || el.dataset.en;
   });
-  const button = document.querySelector(".lang-button");
-  if (button) button.textContent = labels[lang];
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.classList.toggle("active", b.dataset.setLang === lang);
+    b.setAttribute("aria-pressed", b.dataset.setLang === lang);
+  });
 }
 
 function playWink() {
@@ -262,8 +248,12 @@ if (saved && labels[saved]) {
   showLanguagePopup();
 }
 
-const langButton = document.querySelector(".lang-button");
-if (langButton) langButton.addEventListener("click", showLanguagePopup);
+document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    saveLanguage(b.dataset.setLang);
+    applyLanguage(b.dataset.setLang);
+  });
+});
 
 // Contact me button: scroll down, then make the contact box glow
 const contactButton = document.querySelector(".contact-cta");
@@ -349,58 +339,182 @@ if (contactButton) {
   });
 })();
 
-// Try It Yourself: a tiny, simplified run of the email workflow
+// Try It Yourself: drag the arrow from the email to the right node
 (function () {
   const demo = document.querySelector(".demo");
   if (!demo) return;
+
   const text = {
     en: {
-      found: ["Look up order", "Claude drafts", "Sent ✓", "Reply: \"Good news! Order #1042 has shipped.\" Confidence 97%, so it's sent automatically."],
-      nonum: ["Ask for order #", "Skipped", "Sent ✓", "No order number found, so the workflow asks the customer for one. No AI needed."],
-      general: ["Answer key", "Claude drafts", "Team review", "Claude drafts a reply from the answer key, but confidence is 82%, so the team reviews it first."]
+      label: "New email", next: "Next email", again: "Play again",
+      targets: { lookup: "Look up order (Square API)", ask: "Ask for order #", answer: "Answer key" },
+      claude: "Claude drafts", sent: "Sent ✓", review: "Team review",
+      done: "Nice! You routed all three emails exactly like the workflow does.",
+      rounds: [
+        { email: "Where's my order #1042?", route: "lookup", review: false,
+          hint: "Close! This email includes an order number, so the workflow can look it up.",
+          win: "Correct! The order is found, Claude drafts a reply at 97% confidence, and it's sent automatically." },
+        { email: "Where is my order?", route: "ask",
+          hint: "Close! It's about an order, but there's no order number to look up yet.",
+          win: "Correct! No order number, so the workflow emails the customer to ask for one. No AI needed." },
+        { email: "Can I change my shipping address?", route: "answer", review: true,
+          hint: "Close! This isn't about a specific order, so the workflow checks the answer key.",
+          win: "Correct! Claude drafts a reply from the answer key, but confidence is 82%, so the team reviews it first." }
+      ]
     },
     es: {
-      found: ["Buscar pedido", "Claude redacta", "Enviado ✓", "Respuesta: \"¡Buenas noticias! El pedido #1042 ya fue enviado.\" Confianza del 97%, así que se envía automáticamente."],
-      nonum: ["Pedir n.º de pedido", "Omitido", "Enviado ✓", "No hay número de pedido, así que el flujo se lo pide al cliente. No hace falta IA."],
-      general: ["Guía de respuestas", "Claude redacta", "Revisión del equipo", "Claude redacta una respuesta con la guía, pero la confianza es del 82%, así que el equipo la revisa primero."]
+      label: "Correo nuevo", next: "Siguiente correo", again: "Jugar de nuevo",
+      targets: { lookup: "Buscar pedido (API de Square)", ask: "Pedir n.º de pedido", answer: "Guía de respuestas" },
+      claude: "Claude redacta", sent: "Enviado ✓", review: "Revisión del equipo",
+      done: "¡Muy bien! Enviaste los tres correos exactamente como lo hace el flujo.",
+      rounds: [
+        { email: "¿Dónde está mi pedido #1042?", route: "lookup", review: false,
+          hint: "¡Casi! Este correo incluye un número de pedido, así que el flujo puede buscarlo.",
+          win: "¡Correcto! Se encuentra el pedido, Claude redacta una respuesta con 97% de confianza y se envía automáticamente." },
+        { email: "¿Dónde está mi pedido?", route: "ask",
+          hint: "¡Casi! Es sobre un pedido, pero todavía no hay número para buscar.",
+          win: "¡Correcto! Sin número de pedido, el flujo le escribe al cliente para pedírselo. No hace falta IA." },
+        { email: "¿Puedo cambiar mi dirección de envío?", route: "answer", review: true,
+          hint: "¡Casi! No es sobre un pedido específico, así que el flujo revisa la guía de respuestas.",
+          win: "¡Correcto! Claude redacta una respuesta con la guía, pero la confianza es del 82%, así que el equipo la revisa primero." }
+      ]
     },
     it: {
-      found: ["Cerca ordine", "Claude scrive", "Inviata ✓", "Risposta: \"Buone notizie! L'ordine #1042 è stato spedito.\" Affidabilità 97%, quindi viene inviata in automatico."],
-      nonum: ["Chiedi n. ordine", "Saltato", "Inviata ✓", "Nessun numero d'ordine, quindi il flusso lo chiede al cliente. Nessuna IA necessaria."],
-      general: ["Guida risposte", "Claude scrive", "Revisione del team", "Claude scrive una risposta dalla guida, ma l'affidabilità è dell'82%, quindi il team la controlla prima."]
+      label: "Nuova email", next: "Email successiva", again: "Gioca ancora",
+      targets: { lookup: "Cerca ordine (API di Square)", ask: "Chiedi n. ordine", answer: "Guida risposte" },
+      claude: "Claude scrive", sent: "Inviata ✓", review: "Revisione del team",
+      done: "Brava! Hai smistato tutte e tre le email esattamente come fa il flusso.",
+      rounds: [
+        { email: "Dov'è il mio ordine #1042?", route: "lookup", review: false,
+          hint: "Quasi! Questa email contiene un numero d'ordine, quindi il flusso può cercarlo.",
+          win: "Giusto! L'ordine viene trovato, Claude scrive una risposta con affidabilità del 97% e viene inviata in automatico." },
+        { email: "Dov'è il mio ordine?", route: "ask",
+          hint: "Quasi! Riguarda un ordine, ma non c'è ancora un numero da cercare.",
+          win: "Giusto! Senza numero d'ordine, il flusso scrive al cliente per chiederlo. Nessuna IA necessaria." },
+        { email: "Posso cambiare l'indirizzo di spedizione?", route: "answer", review: true,
+          hint: "Quasi! Non riguarda un ordine specifico, quindi il flusso controlla la guida risposte.",
+          win: "Giusto! Claude scrive una risposta dalla guida, ma l'affidabilità è dell'82%, quindi il team la controlla prima." }
+      ]
     }
   };
-  const nodes = demo.querySelectorAll(".demo-node");
-  const result = demo.querySelector(".demo-result");
-  const picks = demo.querySelectorAll(".demo-picks button");
-  let timers = [];
 
-  function run(kind) {
-    timers.forEach(clearTimeout);
-    timers = [];
-    const lang = text[document.documentElement.lang] ? document.documentElement.lang : "en";
-    const t = text[lang][kind];
-    nodes[2].textContent = t[0];
-    nodes[3].textContent = kind === "nonum" ? t[1] : t[1];
-    nodes[4].textContent = t[2];
-    nodes.forEach(function (n) { n.classList.remove("on", "done", "skip"); });
-    result.textContent = "";
-    nodes.forEach(function (n, i) {
-      timers.push(setTimeout(function () {
-        if (i > 0) nodes[i - 1].classList.replace("on", "done");
-        if (kind === "nonum" && i === 3) { n.classList.add("skip"); return; }
-        if (kind === "nonum" && i === 4) nodes[3].classList.remove("on");
-        n.classList.add("on");
-        if (i === nodes.length - 1) result.textContent = t[3];
-      }, i * 550));
-    });
+  const board = demo.querySelector(".demo-board");
+  const line = demo.querySelector(".demo-line");
+  const handle = demo.querySelector(".demo-handle");
+  const emailLabel = demo.querySelector(".demo-email-label");
+  const emailText = demo.querySelector(".demo-email-text");
+  const targets = demo.querySelectorAll(".demo-target");
+  const after = demo.querySelector(".demo-after");
+  const status = demo.querySelector(".demo-status");
+  const nextBtn = demo.querySelector(".demo-next");
+  let round = 0, solved = false, lockedTarget = null, dragging = false;
+
+  function t() {
+    const lang = document.documentElement.lang;
+    return text[lang] || text.en;
   }
 
-  picks.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      picks.forEach(function (b) { b.classList.remove("picked"); });
-      btn.classList.add("picked");
-      run(btn.dataset.case);
-    });
+  function point(el, side) {
+    const b = board.getBoundingClientRect(), r = el.getBoundingClientRect();
+    if (side === "handle") return { x: r.left + r.width / 2 - b.left, y: r.top + r.height / 2 - b.top };
+    const stacked = window.matchMedia("(max-width: 640px)").matches;
+    return stacked ? { x: r.left + r.width / 2 - b.left, y: r.top - b.top }
+                   : { x: r.left - b.left, y: r.top + r.height / 2 - b.top };
+  }
+
+  function draw(to) {
+    const from = point(handle, "handle");
+    const stacked = window.matchMedia("(max-width: 640px)").matches;
+    const d = stacked
+      ? "M" + from.x + "," + from.y + " C" + from.x + "," + (from.y + 40) + " " + to.x + "," + (to.y - 40) + " " + to.x + "," + to.y
+      : "M" + from.x + "," + from.y + " C" + (from.x + 60) + "," + from.y + " " + (to.x - 60) + "," + to.y + " " + to.x + "," + to.y;
+    line.setAttribute("d", d);
+  }
+
+  function render() {
+    const tx = t(), r = tx.rounds[round];
+    emailLabel.textContent = tx.label;
+    emailText.textContent = "\u201C" + r.email + "\u201D";
+    targets.forEach(function (b) { b.textContent = tx.targets[b.dataset.route]; });
+    nextBtn.textContent = round === tx.rounds.length - 1 ? tx.again : tx.next;
+  }
+
+  function reset() {
+    solved = false; lockedTarget = null;
+    line.setAttribute("d", ""); line.classList.remove("locked");
+    targets.forEach(function (b) { b.classList.remove("correct", "dim", "wrong", "hover"); });
+    after.innerHTML = ""; status.textContent = ""; nextBtn.classList.remove("show");
+    render();
+  }
+
+  function choose(target) {
+    if (solved) return;
+    const tx = t(), r = tx.rounds[round];
+    if (target.dataset.route === r.route) {
+      solved = true; lockedTarget = target;
+      draw(point(target)); line.classList.add("locked");
+      target.classList.add("correct");
+      targets.forEach(function (b) { if (b !== target) b.classList.add("dim"); });
+      const steps = r.route === "ask" ? [tx.sent] : [tx.claude, r.review ? tx.review : tx.sent];
+      after.innerHTML = "";
+      steps.forEach(function (s, i) {
+        if (i > 0) { const a = document.createElement("span"); a.className = "arrow"; a.textContent = "→"; after.appendChild(a); }
+        const el = document.createElement("span"); el.textContent = s;
+        if (i === steps.length - 1) el.classList.add("final");
+        after.appendChild(el);
+      });
+      after.querySelectorAll("span").forEach(function (el, i) {
+        setTimeout(function () { el.classList.add("show"); }, 250 + i * 300);
+      });
+      setTimeout(function () {
+        status.textContent = r.win + (round === tx.rounds.length - 1 ? " " + tx.done : "");
+        nextBtn.classList.add("show");
+      }, 250 + steps.length * 600);
+    } else {
+      line.setAttribute("d", "");
+      target.classList.remove("wrong"); void target.offsetWidth; target.classList.add("wrong");
+      status.textContent = r.hint;
+    }
+  }
+
+  handle.addEventListener("pointerdown", function (e) {
+    if (solved) return;
+    dragging = true;
+    handle.setPointerCapture(e.pointerId);
+    e.preventDefault();
   });
+
+  handle.addEventListener("pointermove", function (e) {
+    if (!dragging) return;
+    const b = board.getBoundingClientRect();
+    draw({ x: e.clientX - b.left, y: e.clientY - b.top });
+    const over = document.elementFromPoint(e.clientX, e.clientY);
+    targets.forEach(function (tgt) { tgt.classList.toggle("hover", tgt === (over && over.closest(".demo-target"))); });
+  });
+
+  handle.addEventListener("pointerup", function (e) {
+    if (!dragging) return;
+    dragging = false;
+    targets.forEach(function (tgt) { tgt.classList.remove("hover"); });
+    const over = document.elementFromPoint(e.clientX, e.clientY);
+    const target = over && over.closest(".demo-target");
+    if (target) choose(target); else line.setAttribute("d", "");
+  });
+
+  targets.forEach(function (b) { b.addEventListener("click", function () { choose(b); }); });
+
+  nextBtn.addEventListener("click", function () {
+    round = (round + 1) % t().rounds.length;
+    reset();
+  });
+
+  window.addEventListener("resize", function () { if (lockedTarget) draw(point(lockedTarget)); });
+  document.querySelectorAll("[data-set-lang], .lang-options button").forEach(function (b) {
+    b.addEventListener("click", function () { setTimeout(reset, 0); });
+  });
+  document.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest(".lang-options button")) setTimeout(reset, 0);
+  });
+
+  reset();
 })();
